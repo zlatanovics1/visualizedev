@@ -13,6 +13,7 @@ export async function getServerUserData() {
     .select("*")
     .eq("id", user.id)
     .single();
+  // console.log(error);
   if (error) throw new Error("Failed to get user data!");
 
   return data;

@@ -66,6 +66,7 @@ export default function MessageInput() {
     };
 
     setQueryClientData(queryClient, newMessage, params.channelId as string);
+    setFile("");
 
     // const messageList = document.querySelector(".message-list")!;
     // messageList.scrollTop = messageList.scrollHeight;

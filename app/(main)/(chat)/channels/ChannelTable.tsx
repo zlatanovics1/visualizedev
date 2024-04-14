@@ -4,6 +4,7 @@ import Link from "next/link";
 import { IoPeopleCircleOutline } from "react-icons/io5";
 import InviteToChannel from "./InviteToChannel";
 import Empty from "@/components/ui/Empty";
+import { HiUserAdd } from "react-icons/hi";
 
 interface ChannelData {
   name: string;
@@ -23,7 +24,11 @@ export default async function ChannelTable() {
   const result = await getChannels();
   if (!result)
     return (
-      <Empty message="Let a friend add you to a channel manually or via invite link!" />
+      <Empty
+        className="text-gray-600"
+        icon={<HiUserAdd />}
+        message="Let a friend add you to a channel manually or via invite link!"
+      />
     );
   const { memberData, channelsData } = result;
 

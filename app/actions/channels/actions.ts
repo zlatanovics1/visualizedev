@@ -22,7 +22,7 @@ export async function createChannel(formData: FormData) {
     name: channelName,
     description: formData.get("channelDesc") as string,
     type: formData.get("channelType") as string,
-    num_members: 1,
+    num_members: 0,
     photo: fileName && process.env.NEXT_PUBLIC_CHANNELS_BUCKET_URL! + fileName,
   };
 
