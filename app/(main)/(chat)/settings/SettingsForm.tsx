@@ -75,7 +75,7 @@ export default function SettingsForm({ user }: { user: User }) {
             id="usersname"
             name="username"
             defaultValue={user.username}
-            className="px-3 py-1  bg-white text-gray-400 rounded-md cursor-pointer focus:ring-[1px] focus:ring-indigo-600 outline-none max-w-40"
+            className="px-3 py-1  bg-gray-50 text-gray-400 rounded-md cursor-pointer focus:ring-[1px] focus:ring-indigo-600 outline-none max-w-40"
           />
           <label htmlFor="usersname" aria-label="Change name"></label>
           <br />
@@ -84,7 +84,7 @@ export default function SettingsForm({ user }: { user: User }) {
             name="usersdesc"
             onChange={(e) => setDesc(e.target.value)}
             defaultValue={user.description || "Add description..."}
-            className="mt-4 px-3 py-1 resize-none bg-white text-gray-400 rounded-md cursor-pointer focus:ring-[1px] focus:ring-indigo-600 outline-none"
+            className="mt-4 px-3 py-1 resize-none bg-gray-50 text-gray-400 rounded-md cursor-pointer focus:ring-[1px] focus:ring-indigo-600 outline-none"
           />
           <label htmlFor="usersdesc" aria-label="Change description"></label>
         </div>

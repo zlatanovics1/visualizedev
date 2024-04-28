@@ -27,7 +27,7 @@ function Table({ children }: { children: React.ReactNode }) {
   return (
     <div
       role="table"
-      className="rounded-md m-6 border-2 border-gray-200 max-w-6xl min-w-96 overflow-x-scroll"
+      className="rounded-md m-6 border-2 mx-auto border-gray-200 max-w-6xl min-w-96 overflow-x-scroll"
     >
       {children}
     </div>

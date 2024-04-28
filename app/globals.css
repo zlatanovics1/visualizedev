@@ -111,9 +111,9 @@ body.light {
 
 :root,
 body.dark {
-  --gray-0: #18212f;
-  --gray-50: #111827;
-  --gray-100: #1f2937;
+  --gray-0: #111827;
+  --gray-50: #030712;
+  --gray-100: #111827;
   --gray-200: #374151;
   --gray-300: #4b5563;
   --gray-400: #6b7280;
@@ -155,7 +155,7 @@ img {
 }
 
 .dotted {
-  --dot-bg: #18212f;
+  --dot-bg: #111827;
   --dot-color: #3730a3;
   --dot-size: 1.5px;
   --dot-space: 22px;
