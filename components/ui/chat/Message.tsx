@@ -69,6 +69,7 @@ const Message = memo(function Message({
             height={40}
             priority
             loading="eager"
+            className="object-cover"
             alt={`${username} avatar`}
           />
         </div>

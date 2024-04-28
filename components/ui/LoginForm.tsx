@@ -41,8 +41,12 @@ export default function LoginForm({ type }: { type: string }) {
     reset();
   }
 
-  async function handleGoogleAuth() {}
-  async function handleGitHubAuth() {}
+  async function handleGoogleAuth() {
+    toast.error("Implementation in process...");
+  }
+  async function handleGitHubAuth() {
+    toast.error("Implementation in process...");
+  }
 
   return (
     <form
@@ -141,6 +145,7 @@ export default function LoginForm({ type }: { type: string }) {
         <button
           className="flex gap-2 rounded-full p-2 shadow-md focus:outline-2 focus:outline-indigo-400 hover:text-indigo-500 transition-all duration-300"
           onClick={handleGoogleAuth}
+          type="button"
         >
           <svg
             version="1.1"
@@ -171,6 +176,7 @@ export default function LoginForm({ type }: { type: string }) {
         <button
           className="flex gap-2 rounded-full p-2 shadow-md focus:outline-2 focus:outline-indigo-400 hover:text-indigo-500 transition-all duration-300"
           onClick={handleGitHubAuth}
+          type="button"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"

@@ -15,6 +15,7 @@ import { MdSend } from "react-icons/md";
 import { MessageType } from "@/types/db-derivated-types";
 import { QueryData } from "@/types/react-query-types";
 import { setQueryClientData } from "@/utils/messages/setQueryClientData";
+import { useRouter } from "next/navigation";
 
 export default function MessageInput() {
   const { data: user, isLoading } = useQuery({
@@ -23,6 +24,7 @@ export default function MessageInput() {
   });
 
   const params = useParams();
+  const router = useRouter();
   const [file, setFile] = useState("");
   const queryClient = useQueryClient();
   const formRef = useRef() as MutableRefObject<HTMLFormElement>;
@@ -47,7 +49,7 @@ export default function MessageInput() {
     ]);
     const file = formData.get("file") as File;
     const fileName = file.size ? `${user?.id}-${file.name}` : null;
-
+    setFile("");
     const newMessage: MessageType = {
       id: queryData?.pages[0]?.data[0]?.id
         ? queryData?.pages[0]?.data[0].id! + 1
@@ -66,11 +68,10 @@ export default function MessageInput() {
     };
 
     setQueryClientData(queryClient, newMessage, params.channelId as string);
-    setFile("");
-
     // const messageList = document.querySelector(".message-list")!;
     // messageList.scrollTop = messageList.scrollHeight;
     await sendMessage(formData);
+    if (fileData) router.refresh();
   }
 
   return (
