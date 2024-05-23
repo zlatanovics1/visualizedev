@@ -11,10 +11,11 @@ import Loader from "@/components/ui/Loader";
 import Modal from "@/components/ui/Modal";
 import Friend from "@/components/ui/chat/Friend";
 import Empty from "@/components/ui/Empty";
+import { Tables } from "@/database/types/supabase";
 
 export default function FriendsList() {
   const [searchTerm, setSearchTerm] = useState("");
-  const { data, isLoading } = useQuery({
+  const { data, isLoading } = useQuery<Tables<"users">[]>({
     queryKey: ["friends"],
     queryFn: loadFriends,
   });
