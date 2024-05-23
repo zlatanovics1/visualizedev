@@ -22,7 +22,7 @@ export async function createChannel(formData: FormData) {
     name: channelName,
     description: formData.get("channelDesc") as string,
     type: formData.get("channelType") as string,
-    num_members: 0,
+    num_members: 1,
     photo: fileName && process.env.NEXT_PUBLIC_CHANNELS_BUCKET_URL! + fileName,
   };
 
@@ -42,6 +42,7 @@ export async function createChannel(formData: FormData) {
   const { error: relationError } = await supabase
     .from("channels_users")
     .insert(userChannelRelationData);
+  console.log(relationError);
   if (relationError) throw new Error("Could not create channel");
   if (fileName) {
     const { error: bucketError } = await supabase.storage

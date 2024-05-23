@@ -127,21 +127,31 @@ export type Database = {
       }
       likes: {
         Row: {
+          channel_id: number | null
           created_at: string
           message_id: number
           user_id: string
         }
         Insert: {
+          channel_id?: number | null
           created_at?: string
           message_id: number
           user_id: string
         }
         Update: {
+          channel_id?: number | null
           created_at?: string
           message_id?: number
           user_id?: string
         }
         Relationships: [
+          {
+            foreignKeyName: "likes_channel_id_fkey"
+            columns: ["channel_id"]
+            isOneToOne: false
+            referencedRelation: "channels"
+            referencedColumns: ["id"]
+          },
           {
             foreignKeyName: "likes_message_id_fkey"
             columns: ["message_id"]
@@ -240,7 +250,50 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      select_friends: {
+        Args: Record<PropertyKey, never>
+        Returns: {
+          id: string
+          created_at: string
+          username: string
+          avatar: string
+          description: string
+        }[]
+      }
+      select_new_friends: {
+        Args: Record<PropertyKey, never>
+        Returns: {
+          id: string
+          created_at: string
+          username: string
+          avatar: string
+          description: string
+        }[]
+      }
+      select_non_friends:
+        | {
+            Args: Record<PropertyKey, never>
+            Returns: {
+              id: string
+              created_at: string
+              username: string
+              avatar: string
+              description: string
+            }[]
+          }
+        | {
+            Args: {
+              username_pattern: string
+              start_index: number
+            }
+            Returns: {
+              id: string
+              created_at: string
+              username: string
+              avatar: string
+              description: string
+            }[]
+          }
     }
     Enums: {
       [_ in never]: never
