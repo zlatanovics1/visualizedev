@@ -29,7 +29,6 @@ export async function signupUser(formData: LoginData) {
       },
     },
   });
-
   if (signupError || !user) {
     return { success: false };
   }

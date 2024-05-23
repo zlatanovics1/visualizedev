@@ -37,7 +37,7 @@ export async function getChannels() {
   const channelIds = memberData.map((row) => row.channel_id);
   const { data: channelsData, error: channelsError } = await supabase
     .from("channels")
-    .select("*,users!public_channels_creator_fkey(*)")
+    .select("*,users!channels_creator_fkey(*)")
     .in("id", channelIds);
   if (channelsError) throw new Error("Could not load channels");
   return { memberData, channelsData };

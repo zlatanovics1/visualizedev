@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "updatedb": "npx supabase gen types typescript --project-id \"enxvoktozkzstuddupap\" --schema public > database/types/supabase.ts",
+    "updatedb": "npx supabase gen types typescript --project-id \"dcgaopelonrqubvdhhin\" --schema public > database/types/supabase.ts",
     "local": "ngrok http --domain=insect-evolved-mildly.ngrok-free.app 3000"
   },
   "dependencies": {

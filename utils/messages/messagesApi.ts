@@ -18,7 +18,7 @@ export async function getMessages({
   const rangeValue = (pageParam as number) * MESSAGES_PER_PAGE;
   let query = supabase
     .from("messages")
-    .select("*,users!public_messages_author_id_fkey(*)", { count: "exact" });
+    .select("*,users!messages_author_id_fkey(*)", { count: "exact" });
 
   if (channelId) {
     query = query.eq("channel_id", Number(channelId));
@@ -28,6 +28,7 @@ export async function getMessages({
   const { data, error, count } = await query
     .range(rangeValue, rangeValue + MESSAGES_PER_PAGE - 1)
     .order("created_at", { ascending: false });
+  console.log(error);
   if (error) throw new Error("Could not fetch messages");
 
   return { data, count };
