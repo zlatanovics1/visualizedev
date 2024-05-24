@@ -2,8 +2,6 @@ export function dfs(startNodeId: number, network: any) {
   const visited = new Set();
   const stack = [startNodeId];
   const visitNode = (nodeId: number) => {
-    // Update the node's color to green
-    // nodes.update({ id: nodeId, color: { background: "green" } });
     network.selectNodes([nodeId]);
   };
 
@@ -32,7 +30,6 @@ export function dfs(startNodeId: number, network: any) {
     }
   };
 
-  // visitNext(0);
   // Start the DFS process
   dfsVisit();
 }
@@ -43,9 +40,6 @@ export function bfs(startNodeId: number, network: any) {
   visited.add(startNodeId);
 
   const visitNode = (nodeId: number) => {
-    // Update the node's color to green
-    // nodes.update({ id: nodeId, color: { background: "green" } });
-    // network.editNode();
     network.selectNodes([nodeId]);
   };
 
@@ -72,6 +66,5 @@ export function bfs(startNodeId: number, network: any) {
     setTimeout(processQueue, 1000);
   };
 
-  // Start the BFS process
   processQueue();
 }
