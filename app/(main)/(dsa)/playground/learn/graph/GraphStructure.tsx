@@ -1,17 +1,21 @@
 "use client";
 
-import { MutableRefObject, useEffect, useRef, useState } from "react";
-import { Network } from "vis-network";
+import { useEffect, useRef, useState } from "react";
+import { IdType, Network } from "vis-network";
 import "vis-network/styles/vis-network.css";
 import { graphOptions } from "@/client-config/graphOptions";
 import toast from "react-hot-toast";
 import { HiPencil, HiPlus } from "react-icons/hi2";
+import vis from "vis-network/declarations/index-legacy-bundle";
+import { Play } from "lucide-react";
+import { bfs, dfs } from "@/utils/algorithms";
 
 type id = number | string;
 
 type Node = {
   id: id;
   label: string;
+  color?: string;
 };
 
 type Edge = {
@@ -53,13 +57,16 @@ function parseEdges(edgesInput: string) {
   return edges;
 }
 
-export default function GraphStructure() {
-  const [nodes, setNodes] = useState<Node[]>(defaultNodes);
-  const [edges, setEdges] = useState<Edge[]>(defaultEdges);
+export default function GraphStructure({ bfsOn = false, dfsOn = false }) {
+  const [nodes, setNodes] = useState(defaultNodes);
+  const [edges, setEdges] = useState(defaultEdges);
   const graphRef = useRef<HTMLDivElement>(null);
   const networkRef = useRef<Network>();
   const [nodesInput, setNodesInput] = useState("1 2 3 4 5");
+  const [startFrom, setStartFrom] = useState(1);
   const [edgesInput, setEdgesInput] = useState("1-3 1-2 2-4 2-5 3-3");
+
+  // Start BFS from node 1
 
   useEffect(
     function () {
@@ -85,7 +92,14 @@ export default function GraphStructure() {
     const newEdges = parseEdges(edgesInput);
     setNodes(newNodes);
     setEdges(newEdges);
-    // console.log(networkRef.current?.getConnectedNodes(1));
+    // alert(networkRef.current?.getConnectedNodes(1));
+  }
+
+  function handleBFS() {
+    bfs(startFrom, networkRef.current!);
+  }
+  function handleDFS() {
+    dfs(startFrom, networkRef.current!);
   }
 
   function handleAddRandomNode() {
@@ -104,12 +118,31 @@ export default function GraphStructure() {
   return (
     <section className="h-full relative">
       <div className="absolute top-2 left-2 z-30 flex items-center gap-3">
+        {bfsOn && (
+          <button
+            className="flex items-center gap-2 bg-indigo-600 rounded-xl px-3 py-1 cursor-pointer hover:bg-white hover:text-indigo-600 border-2 hover:border-indigo-600 transition-all duration-300"
+            onClick={handleBFS}
+          >
+            <Play />
+            <span>Animate BFS</span>
+          </button>
+        )}
+        {dfsOn && (
+          <button
+            className="flex items-center gap-2 bg-indigo-600 rounded-xl px-3 py-1 cursor-pointer hover:bg-white hover:text-indigo-600 border-2 hover:border-indigo-600 transition-all duration-300"
+            onClick={handleDFS}
+          >
+            <Play />
+            <span>Animate DFS</span>
+          </button>
+        )}
+
         <button
-          className="flex items-center gap-2 bg-indigo-600 rounded-xl px-3 py-1 cursor-pointer hover:bg-white hover:text-indigo-600 border-2 hover:border-indigo-600 transition-all duration-300"
+          className="flex items-center gap-2 bg-gray-100 rounded-xl border-2 px-3 py-1  cursor-pointer hover:text-indigo-600 transition-all duration-300"
           onClick={handleAnimate}
         >
           <HiPencil className=" w-4 h-4" />
-          <span>Redraw</span>
+          <span> Redraw</span>
         </button>
         <button
           className="flex items-center gap-2 bg-gray-100 rounded-xl border-2 px-3 py-1  cursor-pointer hover:text-indigo-600 transition-all duration-300"
@@ -120,7 +153,25 @@ export default function GraphStructure() {
         </button>
       </div>
       <div className="h-[80%]" ref={graphRef} />
-      <div className="px-3 space-y-4">
+      <div className="px-3 space-y-4 -translate-y-5">
+        {bfsOn ||
+          (dfsOn && (
+            <div className="relative max-w-36">
+              <input
+                className="w-full  rounded-md text-gray-400 bg-white px-4 py-2 border-2 focus:outline-indigo-500 peer"
+                id="startfrom"
+                type="text"
+                value={startFrom}
+                onChange={(e) => setStartFrom(+e.currentTarget.value)}
+              />
+              <label
+                htmlFor="startfrom"
+                className={`absolute   bg-white -top-3 text-gray-300 left-3  transition-all duration-300 peer-focus:left-2  peer-focus:text-indigo-500`}
+              >
+                Start from
+              </label>
+            </div>
+          ))}
         <div className="relative  max-w-[30rem]">
           <input
             id="nodes"

@@ -20,8 +20,6 @@ export async function getFriends(query: string) {
     username_pattern: query === "default" ? "" : query,
   });
 
-  console.log(data, randomIndex, query);
-  console.log(error);
   if (error) throw new Error("Could not fetch users...");
 
   return data as User[];

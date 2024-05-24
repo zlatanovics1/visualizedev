@@ -9,7 +9,6 @@ export async function getLikes(channelId: string) {
     query = query.is("channel_id", null);
   }
   const { data, error } = await query.order("message_id", { ascending: false });
-  console.log(error);
   if (error) throw new Error("Could not load likes...");
 
   return data;

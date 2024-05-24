@@ -40,7 +40,7 @@ export default function DefinitionCodeEditor({ section }: { section: string }) {
           />
         </div>
       ) : (
-        <Definition section={section} />
+        <Definition section={section.includes("graph") ? "graph" : section} />
       )}
     </div>
   );

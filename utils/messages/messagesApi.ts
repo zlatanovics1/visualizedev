@@ -28,7 +28,6 @@ export async function getMessages({
   const { data, error, count } = await query
     .range(rangeValue, rangeValue + MESSAGES_PER_PAGE - 1)
     .order("created_at", { ascending: false });
-  console.log(error);
   if (error) throw new Error("Could not fetch messages");
 
   return { data, count };

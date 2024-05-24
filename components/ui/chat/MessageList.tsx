@@ -7,6 +7,7 @@ import {
   useMemo,
   useRef,
 } from "react";
+import React from "react";
 import { useAppSelector } from "@/hooks/storeHooks";
 import {
   useInfiniteQuery,
@@ -154,7 +155,7 @@ export default function MessageList({
           messages[index + 1]?.created_at
         );
         return (
-          <>
+          <React.Fragment key={message.id + "frag"}>
             <Message
               channelId={channelName === "global" ? null : Number(channelName)}
               message={message}
@@ -178,12 +179,12 @@ export default function MessageList({
                 createdAt={message.created_at}
               />
             ) : null}
-          </>
+          </React.Fragment>
         );
       })}
       {isFetchingNextPage && (
         <div
-          key={`isFetchingNextPage`}
+          // key={`isFetchingNextPage`}
           className="flex items-center justify-center m-2"
         >
           <BiLoaderAlt className="animate-spin text-indigo-600" />

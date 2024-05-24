@@ -117,6 +117,43 @@ export const defaultCodes: DefaultCodes = {
 }
       `,
     },
+    graphbfs: {
+      text: `
+#include <iostream>
+#include <list>
+#include <vector>
+#include <queue>      
+
+// s -> startNode
+void BFS(int s) {
+  // Mark all the vertices as not visited
+  std::vector<bool> visited(V, false);
+
+  // Create a queue for BFS
+  std::queue<int> queue;
+
+  // Mark the current node as visited and enqueue it
+  visited[s] = true;
+  queue.push(s);
+
+  while(!queue.empty()) {
+      // Dequeue a vertex from queue and print it
+      s = queue.front();
+      std::cout << s << " ";
+      queue.pop();
+
+      // Get all adjacent vertices of the dequeued vertex s
+      // If an adjacent has not been visited, then mark it visited and enqueue it
+      for(auto adjVertex : adj[s]) {
+          if(!visited[adjVertex]) {
+              visited[adjVertex] = true;
+              queue.push(adjVertex);
+          }
+      }
+  }
+}
+`,
+    },
     graph: {
       text: `
 #include <stdio.h>

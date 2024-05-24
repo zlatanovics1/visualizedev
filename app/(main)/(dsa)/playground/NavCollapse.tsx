@@ -10,7 +10,7 @@ import { useCloseModal } from "@/hooks/useCloseModal";
 export default function NavCollapse() {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
-  const learnValue = pathname.split("learn/").at(1)?.split("/").at(0);
+  const learnValue = pathname.split("learn/").at(1);
   const collapseRef = useCloseModal(
     () => setOpen(false),
     true,
