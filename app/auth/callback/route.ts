@@ -4,11 +4,12 @@ import { createClient } from "@/database/supabase/server";
 import { cookies } from "next/headers";
 
 export async function GET(request: Request) {
-  const { searchParams, origin } = new URL(request.url);
+  const { searchParams } = new URL(request.url);
+
   const code = searchParams.get("code");
   // if "next" is in param, use it as the redirect URL
   const next = searchParams.get("next") ?? "/";
-
+  const origin = "https://visualizedev.app";
   if (code) {
     const supabase = createClient(cookies());
     const { error } = await supabase.auth.exchangeCodeForSession(code);
