@@ -52,7 +52,7 @@ export async function editUserData(formData: FormData) {
 }
 
 export async function updateEmail(data: EditEmailData) {
-  const supabase = await createClient(cookies());
+  const supabase = createClient(cookies());
   const user = await getServerUser();
   if (!user) redirect("/signup");
   if (data.email === user?.user_metadata.email) return;
@@ -67,7 +67,7 @@ export async function updateEmail(data: EditEmailData) {
 }
 
 export async function updatePassword(data: EditPasswordData) {
-  const supabase = await createClient(cookies());
+  const supabase = createClient(cookies());
   const user = await getServerUser();
   if (!user) redirect("/signup");
   const result = editPasswordSchema.safeParse(data);

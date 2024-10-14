@@ -1,6 +1,6 @@
 "use client";
 
-import { useQuery } from "@tanstack/react-query";
+import { dataTagSymbol, useQuery } from "@tanstack/react-query";
 import { ChangeEvent, useState } from "react";
 
 import { loadFriends } from "@/utils/friends/friendsApi";
@@ -29,6 +29,7 @@ export default function FriendsList() {
         .sort((user) => (user.username.startsWith(searchTerm) ? -1 : 1))
     : data;
 
+  const ind = Math.floor(Math.random() * (data?.length || 0));
   return (
     <>
       <Input
@@ -45,9 +46,9 @@ export default function FriendsList() {
       ) : (
         <Modal>
           {filteredData?.length ? (
-            <ul className="mt-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 mdlg:grid-cols-2 lg:grid-cols-3 gap-4">
-              {filteredData.map((user) => (
-                <Friend key={user.id} user={user} />
+            <ul className="mt-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 mdlg:grid-cols-2 xl:grid-cols-4 gap-4">
+              {filteredData.map((user, i) => (
+                <Friend key={user.id} user={user} active={i === ind} />
               ))}
             </ul>
           ) : (

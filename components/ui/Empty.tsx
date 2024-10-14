@@ -11,7 +11,7 @@ export default function Empty({
 }) {
   return (
     <h2
-      className={`flex gap-2 text-2xl items-center justify-center font-semibold mt-10 ${className}`}
+      className={`flex gap-2 text-2xl items-center justify-center font-medium mt-10 ${className}`}
     >
       {icon}
       {message || "No data to display at the moment..."}

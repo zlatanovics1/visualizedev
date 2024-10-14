@@ -21,7 +21,7 @@ export default function AddChannel() {
       />
 
       <label htmlFor="channelType" className="text-gray-600">
-        Channel type
+        Channel topic
       </label>
 
       <input

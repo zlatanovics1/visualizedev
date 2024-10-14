@@ -49,8 +49,8 @@ export default function UpdateCredsForm({
       }
       const success =
         (await updatePassword(data as EditPasswordData))?.success || true;
-      if (!success) toast.error("Could not edit email");
-      else toast.success("Email updated successfully");
+      if (!success) toast.error("Could not edit password");
+      else toast.success("Password updated successfully");
     }
     setIsLoading(false);
   }

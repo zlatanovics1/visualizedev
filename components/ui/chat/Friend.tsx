@@ -6,12 +6,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import Image from "next/image";
-import {
-  BiDotsVertical,
-  BiTrash,
-  BiVolumeFull,
-  BiVolumeMute,
-} from "react-icons/bi";
+import { BiDotsVertical, BiTrash } from "react-icons/bi";
 import { HiUserCircle } from "react-icons/hi";
 import { Dot } from "lucide-react";
 import Modal, { useModal } from "../Modal";
@@ -22,7 +17,13 @@ import toast from "react-hot-toast";
 
 const ddMenuItemClass = "flex items-center gap-1 focus:text-red-600 ";
 
-export default function Friend({ user }: { user: User }) {
+export default function Friend({
+  user,
+  active,
+}: {
+  user: User;
+  active?: boolean;
+}) {
   const { close } = useModal();
   const queryClient = useQueryClient();
   const { mutate: mutateRemove, isPending: isPendingRemoving } = useMutation({
@@ -31,7 +32,7 @@ export default function Friend({ user }: { user: User }) {
     onSettled: () => toast.loading("Removing user...", { id: "removingUser" }),
   });
   return (
-    <li className="flex gap-4 items-center border-2 rounded-2xl px-3 py-2 cursor-pointer">
+    <li className="flex gap-4 items-center border rounded-2xl px-3 py-2 cursor-pointer">
       <div className="relative overflow-hidden w-full max-w-20 h-20">
         {user.avatar ? (
           <Image
@@ -48,9 +49,7 @@ export default function Friend({ user }: { user: User }) {
       <div className="flex flex-col gap-1 justify-center grow">
         <p className="font-semibold text-sm flex items-center">
           <span className="">{user.username}</span>
-          <Dot className="text-green-500" />
-          {/* <BiVolumeMute className="text-red-500" /> */}
-          {/* <BiVolumeFull className="text-green-500" /> */}
+          {active && <Dot className="text-green-500" />}
         </p>
         <p className="text-[12px] text-gray-500">{user.description}</p>
       </div>
@@ -65,13 +64,13 @@ export default function Friend({ user }: { user: User }) {
               <span>Remove friend</span>
             </DropdownMenuItem>
           </Modal.Open>
-          <DropdownMenuItem
+          {/* <DropdownMenuItem
             className={ddMenuItemClass + " focus:text-green-500"}
           >
-            {/* <BiVolumeMute /> */}
+            {/* <BiVolumeMute /> *
             <BiVolumeFull />
             <span>Enable messages</span>
-          </DropdownMenuItem>
+          </DropdownMenuItem> */}
         </DropdownMenuContent>
       </DropdownMenu>
       <Modal.Window windowName={user.id + "-window"}>
