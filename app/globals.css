@@ -6,6 +6,9 @@ html::-webkit-scrollbar,
 *::-webkit-scrollbar {
   display: none;
 }
+html {
+  font-size: 80%;
+}
 *,
 *::before,
 *::after {

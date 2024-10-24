@@ -148,7 +148,7 @@ export default function MessageList({
     return <Empty message="Write the first message on the channel!" />;
 
   return (
-    <ul className="overflow-y-scroll flex flex-col-reverse gap-6 py-6 md:py-4 px-4 relative">
+    <ul className="overflow-y-scroll flex flex-col-reverse gap-6 py-8 md:py-6 px-4 relative">
       {messages.map((message, index) => {
         const diffDay = isDifferentDay(
           message.created_at,

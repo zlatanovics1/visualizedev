@@ -13,6 +13,22 @@ function toHoursMins(date: string) {
   return `${hours}:${mins}`;
 }
 
+// function returnBrText(text:string){
+//   const split = text.split(" ");
+//   const rows = split.forEach(word => {
+//     const arr = [];
+
+//   })
+//   return <span>
+//     {split.slice(10).join(" ")}
+// {
+//   for(let i = 10; i < split.length; i+=10){
+
+// }
+
+//     </span>
+//   }
+// }
 const Message = memo(function Message({
   channelId,
   message,
@@ -34,10 +50,15 @@ const Message = memo(function Message({
     return likes ? likes.some((like: Likes) => like.user_id === userId) : false;
   });
 
-  const { file: image, text, created_at: createdAt } = message;
+  const { file: image, text: rawText, created_at: createdAt } = message;
   const { username, avatar } = message.users!;
 
-  if (!image && !text) return null;
+  if (!image && !rawText) return null;
+
+  const splitText = rawText.split("");
+  const firstHalf = splitText.slice(0, 10);
+  const secondHalf = splitText.slice(10);
+  const text = rawText;
 
   const time = toHoursMins(createdAt);
   const reverseDirection = message.author_id === userId;
@@ -62,29 +83,29 @@ const Message = memo(function Message({
         </>
       )}
       {avatar ? (
-        <div className="w-10 h-10 overflow-hidden rounded-full relative">
+        <div className=" overflow-hidden rounded-full relative">
           <Image
             src={avatar}
             width={40}
             height={40}
             priority
             loading="eager"
-            className="object-cover"
+            className="object-cover aspect-square"
             alt={`${username} avatar`}
           />
         </div>
       ) : (
-        <HiUserCircle className="w-10 h-10" />
+        <HiUserCircle className="w-[40px] h-[40px]" />
       )}
       {image ? (
         <div
-          className={`w-60 rounded-xl relative  ${
+          className={` rounded-xl relative max-w-80 md:max-w-96  ${
             text && (reverseDirection ? "rounded-br-sm" : "rounded-bl-sm")
           }`}
         >
           <div onDoubleClick={handleClick} className="relative">
             <div
-              className={`relative h-48 overflow-hidden rounded-xl ${
+              className={`relative overflow-hidden aspect-video h-48 rounded-xl ${
                 text && "rounded-b-none"
               }`}
             >
@@ -112,7 +133,7 @@ const Message = memo(function Message({
               onDoubleClick={handleClick}
               className={`${
                 reverseDirection ? "bg-indigo-400 text-gray-200" : "bg-gray-200"
-              } p-3 rounded-xl cursor-pointer rounded-t-none`}
+              } p-3 rounded-xl cursor-pointer rounded-t-none w-full`}
             >
               {text}
               {numLikes > 0 && (
@@ -139,7 +160,7 @@ const Message = memo(function Message({
       ) : (
         <p
           onDoubleClick={handleClick}
-          className={`click cursor-pointer relative bg-gray-200 p-3 rounded-xl ${
+          className={`click cursor-pointer relative bg-gray-200 p-3 rounded-xl max-w-80 md:max-w-lg ${
             reverseDirection
               ? "rounded-br-sm bg-indigo-400 text-gray-100"
               : "rounded-bl-sm"
