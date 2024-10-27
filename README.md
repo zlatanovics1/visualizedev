@@ -11,3 +11,6 @@ Other part is more of a social media app that helps developers connect and inter
 ## IMPORTANT
 
 You need to authenticate yourself before sending messages and creating channels, or doing other CRUD operations.
+
+### NOTICE
+Working on v2 - real-time coding support & AI assistance in the playground.
