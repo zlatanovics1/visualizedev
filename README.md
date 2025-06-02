@@ -8,6 +8,32 @@ This project uses Framer Motion and other libraries to visualize some basic data
 
 Other part is more of a social media app that helps developers connect and interact with each other. You can create standalone channels, add friends (direct messages are in progress - v2) explore various tech stacks and build something fun with integrated code editor.
 
+## 🚀 Features
+
+- ✅ Realtime channel-based messaging (Supabase)
+- ✅ Friend system with invites
+- ✅ Auth (Sign up, login, secure settings)
+- ✅ DSA playground with interactive visualizers
+- ✅ Dark mode and responsive UI
+- ✅ Fully typed with TypeScript
+
+
+## 🧩 Tech Stack
+
+- **Frontend**: Next.js (App Router), Tailwind CSS
+- **Backend**: Supabase (auth, db, realtime)
+- **State**: Redux Toolkit, React Query
+- **Styling**: Tailwind, custom components
+- **Deployment**: Vercel (recommended)
+
+---
+<img width="1508" alt="image" src="https://github.com/user-attachments/assets/7dbc78cc-c9df-4462-bc36-4825fce81139" />
+
+---
+<img width="1507" alt="image" src="https://github.com/user-attachments/assets/3907229d-8d1e-4881-bb5a-a4cba9d627da" />
+
+---
+
 ## IMPORTANT
 
 You need to authenticate yourself before sending messages and creating channels, or doing other CRUD operations.
@@ -120,26 +146,6 @@ Domain-specific utilities:
 - **Messages**: Likes/messages/query client updates
 - **Algorithms**: Shared helpers for playground
 
----
-
-## 🚀 Features
-
-- ✅ Realtime channel-based messaging (Supabase)
-- ✅ Friend system with invites
-- ✅ Auth (Sign up, login, secure settings)
-- ✅ DSA playground with interactive visualizers
-- ✅ Dark mode and responsive UI
-- ✅ Fully typed with TypeScript
-
----
-
-## 🧩 Tech Stack
-
-- **Frontend**: Next.js (App Router), Tailwind CSS
-- **Backend**: Supabase (auth, db, realtime)
-- **State**: Redux Toolkit, React Query
-- **Styling**: Tailwind, custom components
-- **Deployment**: Vercel (recommended)
 
 ---
 
